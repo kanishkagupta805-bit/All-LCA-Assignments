@@ -1,1 +1,21 @@
+def is_right_angled(a, b, c):
 
+   
+    sides = sorted([a, b, c])
+    x, y, z = sides[0], sides[1], sides[2]
+    
+   
+    if abs((x**2 + y**2) - z**2) < 1e-9:
+        return True
+    return False
+
+
+if __name__ == "__main__":
+    side1 = float(input("Enter length of side 1: "))
+    side2 = float(input("Enter length of side 2: "))
+    side3 = float(input("Enter length of side 3: "))
+    
+    if is_right_angled(side1, side2, side3):
+        print("Yes, it is a right-angled triangle!")
+    else:
+        print("No, it is not a right-angled triangle.")
