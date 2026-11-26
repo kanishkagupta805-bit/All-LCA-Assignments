@@ -1,1 +1,16 @@
+import re
 
+def check_string(input_str):
+    
+    pattern = re.compile(r'^[a-zA-Z0-9]+$')
+    
+    if pattern.match(input_str):
+        return True
+    return False
+
+
+string1 = "Python3Programming"
+string2 = "Hello World!"  # Space aur '!' ki wajah se False dega
+
+print(f"'{string1}' contains only allowed characters: {check_string(string1)}")
+print(f"'{string2}' contains only allowed characters: {check_string(string2)}")
