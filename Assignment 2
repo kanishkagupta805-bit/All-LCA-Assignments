@@ -1,1 +1,26 @@
 
+arr = [12, 45, 23, 67, 34, 89, 15, 52, 38, 90]
+
+print("Original List:", arr)
+print("-" * 40)
+
+
+max_val = max(arr)
+print(f"1. Maximum value: {max_val}")
+
+
+min_val = min(arr)
+min_index = arr.index(min_val)
+print(f"2. Index of the minimum value: {min_index} (Value: {min_val})")
+
+
+greater_than_40 = [x for x in arr if x > 40]
+print(f"3. Values greater than 40: {greater_than_40}")
+
+
+last_three = arr[-3:]
+print(f"4. Last 3 elements using negative indexing: {last_three}")
+
+
+mean_val = sum(arr) / len(arr)
+print(f"5. Mean of the list: {mean_val}")
