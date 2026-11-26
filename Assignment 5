@@ -1,16 +1,24 @@
 import re
 
-def check_string(input_str):
-    
+def check_allowed_chars(input_string):
+   
     pattern = re.compile(r'^[a-zA-Z0-9]+$')
     
-    if pattern.match(input_str):
+    
+    if pattern.match(input_string):
         return True
-    return False
+    else:
+        return False
 
 
-string1 = "Python3Programming"
-string2 = "Hello World!"  # Space aur '!' ki wajah se False dega
+if __name__ == "__main__":
+    
+    string1 = "Python3Programming"
+    string2 = "Hello World!"  # Space aur '!' ki wajah se False dega
+    string3 = "123456"
 
-print(f"'{string1}' contains only allowed characters: {check_string(string1)}")
-print(f"'{string2}' contains only allowed characters: {check_string(string2)}")
+    for s in [string1, string2, string3]:
+        if check_allowed_chars(s):
+            print(f"'{s}' contains ONLY allowed characters (a-z, A-Z, 0-9).")
+        else:
+            print(f"'{s}' contains invalid characters or spaces.")
