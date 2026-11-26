@@ -1,0 +1,77 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+df = sns.load_dataset("penguins")
+
+print("--- First 5 Rows of Dataset ---")
+print(df.head())
+
+
+df = df.dropna()
+
+
+sns.set_theme(style="whitegrid")
+
+fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+fig.suptitle("Data Visualization Suite (Line, Bar, Scatter, Heatmap)", fontsize=16, fontweight='bold')
+
+
+sns.lineplot(
+    data=df.head(50), # Taking first 50 rows for clarity
+    x=df.head(50).index, 
+    y="body_mass_g", 
+    hue="species", 
+    ax=axes[0, 0], 
+    marker="o"
+)
+axes[0, 0].set_title("1. Line Plot: Body Mass Trend")
+axes[0, 0].set_xlabel("Sample Index")
+axes[0, 0].set_ylabel("Body Mass (g)")
+
+
+sns.barplot(
+    data=df, 
+    x="species", 
+    y="bill_length_mm", 
+    hue="island", 
+    palette="Blues", 
+    ax=axes[0, 1]
+)
+axes[0, 1].set_title("2. Bar Plot: Average Bill Length by Species & Island")
+axes[0, 1].set_xlabel("Species")
+axes[0, 1].set_ylabel("Bill Length (mm)")
+
+
+sns.scatterplot(
+    data=df, 
+    x="flipper_length_mm", 
+    y="body_mass_g", 
+    hue="sex", 
+    style="species", 
+    palette="Set2", 
+    ax=axes[1, 0]
+)
+axes[1, 0].set_title("3. Scatter Plot: Flipper Length vs Body Mass")
+axes[1, 0].set_xlabel("Flipper Length (mm)")
+axes[1, 0].set_ylabel("Body Mass (g)")
+
+
+
+numeric_df = df.select_dtypes(include=['float64', 'int64'])
+corr_matrix = numeric_df.corr()
+
+sns.heatmap(
+    corr_matrix, 
+    annot=True, 
+    fmt=".2f", 
+    cmap="coolwarm", 
+    linewidths=0.5, 
+    ax=axes[1, 1]
+)
+axes[1, 1].set_title("4. Heatmap: Feature Correlation Matrix")
+
+
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+plt.show()
